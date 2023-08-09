@@ -5,7 +5,7 @@ from PIL import Image
 
 
 
-my_transforms = transforms.Compose([
+image_transforms = transforms.Compose([
     transforms.RandomHorizontalFlip(p=0.5),
     transforms.RandomVerticalFlip(p=0.05),
     transforms.RandomGrayscale(p=0.2),
@@ -24,7 +24,7 @@ def generate_dataset(image_path, n, output_dir):
 
     # Apply transforms and save transformed images
     for i in range(n):
-        transformed_image = my_transforms(image)
+        transformed_image = image_transforms(image)
         save_image(transformed_image, os.path.join(output_dir, f"transformed_{i+1}.png"))
 
 image_path = 'dataset/sourceFrames/Smile.png'
