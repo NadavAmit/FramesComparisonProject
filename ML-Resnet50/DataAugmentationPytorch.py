@@ -27,8 +27,8 @@ def generate_dataset(image_path, n, output_dir):
         transformed_image = image_transforms(image)
         save_image(transformed_image, os.path.join(output_dir, f"transformed_{i+1}.png"))
 
-image_path = 'dataset/sourceFrames/Smile.png'
+image_path = '../dataset/sourceFrames/Smile.png'
 numberOfImages = 50  #Number of transformed images to generate
-output_dir = 'dataset/smile'  # Directory to save the transformed images
+output_dir = '../dataset/smile'  # Directory to save the transformed images
 
 generate_dataset(image_path, numberOfImages, output_dir)

@@ -67,7 +67,7 @@ class TripletNet(nn.Module):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Set up data loaders
-root_dir = "dataset"
+root_dir = "../dataset"
 image_size = 224
 batch_size = 16
 
