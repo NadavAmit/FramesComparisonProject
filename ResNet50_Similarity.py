@@ -46,9 +46,9 @@ def compute_similarity(image_path1, image_path2):
     return similarity
 
 # Example usage
-image_path1 = 'ImageDataSet/SourceImages/1.jpeg'
-image_path2 = 'ImageDataSet/SourceImages/2.jpeg'
-image_path3 = 'ImageDataSet/SourceImages/5.png'
+image_path1 = 'dataset/sourceFrames/beach.png'
+image_path2 = 'dataset/beach/transformed_1.png'
+image_path3 = 'dataset/sourceFrames/people.png'
 
 similarity_score = compute_similarity(image_path1, image_path2)
 print("Similarity Score:", similarity_score)
