@@ -66,6 +66,8 @@ class TripletNet(nn.Module):
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+#------ Start Here -------
+
 # Set up data loaders
 root_dir = "../dataset"
 image_size = 224
@@ -91,18 +93,18 @@ Net = TripletNet(resnet)
 criterion = nn.TripletMarginLoss()
 
 # Set up optimizer
-optimizer = optim.Adam(resnet.parameters(), lr=0.001)
+optimizer = optim.Adam(resnet.parameters(), lr=0.0001)
 
 # Training loop
-num_epochs = 10
+num_epochs = 50
 
 for epoch in range(num_epochs):
+
     running_loss = 0.0
     for i, (reference, similar, negative) in enumerate(dataloader):
         reference = reference.to(device)
         similar = similar.to(device)
         negative = negative.to(device)
-
         # Zero the parameter gradients
         optimizer.zero_grad()
 
@@ -120,10 +122,9 @@ for epoch in range(num_epochs):
         # Print statistics
         running_loss += loss.item()
 
-        print(f"Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{len(dataloader)}], Loss: {running_loss / 10}")
-        running_loss = 0.0
+        print(f"Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{len(dataloader)}], Loss: {running_loss /(i + 1)}")
+        # Save the trained model every epoch
+        #Set output dir
+        torch.save(resnet.state_dict(), "/content/drive/MyDrive/Image Processing - Mini Project/MachineLearning Algo/triplet_model2.pth")
 
 print("Training finished.")
-
-# Save the trained model
-torch.save(resnet.state_dict(), "triplet_model.pth")
